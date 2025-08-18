@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Results for "{{ query }}"</h1>
+    {% if results %}
+        <ul>
+        {% for row in results %}
+            <li>
+                <strong>{{ row['name'] }}</strong> - DOB: {{ row['dob'] }}, Sex: {{ row['sex'] }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No patients found.</p>
+    {% endif %}
+    <a href="/">Back</a>
+</body>
+</html>

@@ -1,3 +1,4 @@
+from database.sql import parse_patient_info, save_patient_to_db, init_db
 from module import (
     list_images, create_folder,
     load_image, save_image,
@@ -12,6 +13,10 @@ if __name__ == '__main__':
 
     processed_folder = r"C:\Users\huieg\PycharmProjects\PythonProject\data\processed"
     create_folder(processed_folder)
+
+    database_folder = r"C:\Users\huieg\PycharmProjects\PythonProject\patients.db"
+    create_folder(database_folder)
+    conn = init_db(database_folder)
 
     image_paths = list_images(raw_folder)
     for img_path in image_paths:
@@ -28,7 +33,7 @@ if __name__ == '__main__':
         save_image(save_path,deskew)
 
         text = pytesseract_ocr(deskew)
-        save_text_to_file(text, save_path)
-        print("ocr result:")
-        print(text)
-        print("-" * 50)
+        save_text_to_file(text, processed_folder)
+
+        patient = parse_patient_info(text)
+        save_patient_to_db(conn, patient)

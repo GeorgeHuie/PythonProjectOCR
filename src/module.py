@@ -1,6 +1,4 @@
-# modules.py — Auto-import all functions & classes from src submodules
-
-# modules.py
+# modules.py — import all functions & classes from src submodules
 
 # Import all preprocessing functions
 from preprocessing.image_clean import (
@@ -18,7 +16,7 @@ from ocr.pytesseract_ocr import pytesseract_ocr
 # Import utils
 from utils.file_ops import list_images, create_folder
 
-# Optionally define __all__ for cleaner namespace
+# define __all__ for cleaner namespace
 __all__ = [
     'load_image',
     'save_image',
